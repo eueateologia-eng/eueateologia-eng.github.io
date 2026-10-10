@@ -193,12 +193,31 @@ blockquote{margin:0;font-family:var(--display);font-style:italic;font-size:clamp
 
 /* Abas */
 nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom,0px);z-index:10}
-nav.tabs .in{display:grid;grid-template-columns:repeat(4,1fr);width:100%;max-width:560px}
+nav.tabs .in{display:grid;grid-template-columns:repeat(5,1fr);width:100%;max-width:560px}
 .tab{appearance:none;background:none;border:0;font:600 12px/1.2 var(--body);color:var(--muted);padding:10px 4px 12px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer}
 .tab svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8}
 .tab.on{color:var(--lapis)}
 .demo{font-size:12px;color:var(--muted);text-align:center}
 
+
+/* Achadinho */
+.ach-ex{font-size:13px;color:var(--muted);background:var(--gold-soft);border-radius:8px;padding:8px 12px}
+.ach-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ach{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.ach-img{position:relative;aspect-ratio:4/3;max-width:100%;background:var(--gold-soft);display:grid;place-items:center;overflow:hidden}
+.ach-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.ach-img svg{width:44%;height:44%;fill:none;stroke:var(--lapis);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+.ach-body{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1;min-width:0}
+.ach-body h3{font-size:19px;line-height:1.2}
+.ach-tipo{align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:var(--lapis-soft);color:var(--lapis)}
+.ach-tipo.t-uso{background:var(--ok-soft);color:var(--ok)}
+.ach-tipo.t-loja{background:var(--ink);color:var(--bg)}
+.ach-nota{font-size:14px;color:var(--muted);flex:1}
+.ach-meta{font-size:13px;color:var(--muted)} .ach-meta strong{color:var(--ink)}
+.ach-btn{padding:13px 16px;font-size:15px;margin-top:4px}
+.ach-soon{font-size:13px;font-weight:700;color:var(--muted);text-align:center;padding:12px;border:1.5px dashed var(--line);border-radius:999px}
+.ach-aviso{font-size:12px;color:var(--muted);text-align:center;padding-inline:8px}
+@media (max-width:420px){.ach-grid{grid-template-columns:1fr}.ach{flex-direction:row}.ach-img{flex:none;width:112px;aspect-ratio:auto;align-self:stretch;min-height:150px}.ach-body{padding:12px}.ach-body h3{font-size:17px}.ach-nota{font-size:13px}.ach-btn{padding:11px 12px;font-size:14px}}
 /* ===== Identidade da logo: terracota, areia e marrom ===== */
 :root{
   --bg:#faf6eb; --surface:#fffdf8; --ink:#3d2314; --muted:#7a5e4c; --line:#ead9c2;
@@ -233,6 +252,7 @@ blockquote,.key{font-style:normal;font-weight:700;letter-spacing:-.01em}
   <button class="tab" data-t="trilha" id="tab-trilha"><svg viewBox="0 0 24 24"><path d="M4 5h6a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H4zM20 5h-6a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h6z"/></svg>Trilha</button>
   <button class="tab" data-t="quiz" id="tab-quiz"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"/></svg>Quiz</button>
   <button class="tab" data-t="explorar" id="tab-explorar"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>Explorar</button>
+  <button class="tab" data-t="achados" id="tab-achados"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1.2 11.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/></svg>Achados</button>
 </div></nav>
 
 <script>
@@ -553,6 +573,74 @@ function proj(b,W){const k=Math.cos((b.lat0+b.lat1)/2*Math.PI/180),H=W*(b.lat1-b
   return {H:Math.round(H),p:(lat,lon)=>[((lon-b.lon0)/(b.lon1-b.lon0)*W).toFixed(1),((b.lat1-lat)/(b.lat1-b.lat0)*H).toFixed(1)]};}
 function fmtCoord(lat,lon){return `${lat.toFixed(4)}° N, ${lon.toFixed(4)}° L`;}
 
+/* ================= ACHADINHO DA TEÓLOGA ================= */
+/* Na versão publicada, os itens vêm do arquivo achadinhos.json (a Juliana edita só ele).
+   Estes abaixo são exemplos, usados quando o arquivo não está disponível. */
+const WHATSAPP = "";   // número com DDI e DDD, só dígitos (ex.: 5548999999999), para pedidos da loja
+let ACHADOS = {
+  titulo:"Achadinho da Teóloga",
+  intro:"O que eu uso no meu estudo e no dia a dia, e onde comprei.",
+  aviso:"Alguns links são de afiliado: a Juliana pode receber uma comissão pela compra, sem custo extra para você.",
+  itens:[
+    {nome:"Atlas bíblico ilustrado",categoria:"Livros",tipo:"afiliado",loja:"Amazon",preco:"",imagem:"",
+     nota:"Mapas e reconstruções que uso para mostrar onde cada história aconteceu.",link:"https://www.amazon.com.br/s?k=atlas+b%C3%ADblico",exemplo:true},
+    {nome:"Kit de marca-textos para Bíblia",categoria:"Estudo",tipo:"afiliado",loja:"Shopee",preco:"",imagem:"",
+     nota:"Não atravessam o papel fino da Bíblia. Uso uma cor para cada tema.",link:"https://shopee.com.br/search?keyword=marca%20texto%20biblia",exemplo:true},
+    {nome:"Bíblia de estudo",categoria:"Bíblias",tipo:"uso",loja:"Mercado Livre",preco:"",imagem:"",
+     nota:"A que fica na minha mesa. Notas de contexto histórico em cada livro.",link:"https://lista.mercadolivre.com.br/biblia-de-estudo",exemplo:true},
+    {nome:"Caderno de anotações bíblicas",categoria:"Organização",tipo:"loja",loja:"Loja Eu e a Teologia",preco:"",imagem:"",
+     nota:"Com espaço para texto, contexto e aplicação, o mesmo método da trilha diária.",link:"",exemplo:true},
+    {nome:"Histórias bíblicas para crianças",categoria:"Infantil",tipo:"afiliado",loja:"Amazon",preco:"",imagem:"",
+     nota:"Ilustrações bonitas e texto fiel. Ótimo para ler antes de dormir.",link:"https://www.amazon.com.br/s?k=hist%C3%B3rias+b%C3%ADblicas+infantil",exemplo:true},
+    {nome:"Capa de Bíblia em tecido",categoria:"Acessórios",tipo:"loja",loja:"Loja Eu e a Teologia",preco:"",imagem:"",
+     nota:"Protege a Bíblia na bolsa e guarda canetas e marcadores.",link:"",exemplo:true}
+  ]
+};
+let achCat = "Todos";
+const ACH_TIPO = {uso:"Eu uso", afiliado:"Link de afiliado", loja:"Loja Eu e a Teologia"};
+const ACH_ICON = {
+  "Bíblias":'<path d="M7 4h11v16H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M12 8v6M9.5 10.5h5"/>',
+  "Livros":'<path d="M4 5h6a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H4zM20 5h-6a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h6z"/>',
+  "Estudo":'<path d="M15 4l5 5-10 10H5v-5z"/><path d="M13 6l5 5"/>',
+  "Organização":'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/>',
+  "Infantil":'<path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.8z"/>',
+  "Acessórios":'<path d="M6 8h12l-1 12H7z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>'
+};
+async function loadAchados(){
+  try{
+    const r = await fetch("achadinhos.json",{cache:"no-store"});
+    if(r.ok){ const j = await r.json(); if(j && Array.isArray(j.itens)) { ACHADOS = j; if(tab==="achados") render(); } }
+  }catch(e){}
+}
+function achLink(it){
+  if(it.link) return it.link;
+  if(it.tipo==="loja" && WHATSAPP) return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Olá! Vi no app Eu e a Teologia e quero o item: ${it.nome}`)}`;
+  return "";
+}
+function achRender(){
+  const A = ACHADOS, cats = ["Todos", ...new Set(A.itens.map(i=>i.categoria))];
+  if(!cats.includes(achCat)) achCat = "Todos";
+  const list = A.itens.filter(i=>achCat==="Todos"||i.categoria===achCat);
+  const ex = A.itens.some(i=>i.exemplo);
+  app.innerHTML = `${header()}
+    <section class="hero"><p class="eyebrow">Achados</p><h1>${A.titulo}</h1><p class="muted" style="margin-top:8px">${A.intro}</p></section>
+    ${ex?`<p class="ach-ex">Itens de exemplo. A Juliana substitui pelos dela.</p>`:''}
+    <div class="ages" role="tablist" aria-label="Categorias">${cats.map(c=>`<button role="tab" aria-selected="${c===achCat}" class="age ${c===achCat?'on':''}" data-cat="${c}" id="cat-${c.normalize('NFD').replace(/[^\w]/g,'')}">${c}</button>`).join("")}</div>
+    <div class="ach-grid">${list.map((it,k)=>{
+      const href = achLink(it), ic = ACH_ICON[it.categoria]||ACH_ICON["Acessórios"];
+      const btn = it.tipo==="loja" ? (it.link?"Comprar":"Pedir pelo WhatsApp") : `Ver na ${it.loja||"loja"}`;
+      return `<article class="ach ${it.tipo}">
+        <div class="ach-img">${it.imagem?`<img src="${it.imagem}" alt="${it.nome}" loading="lazy" onerror="this.remove()">`:''}<svg viewBox="0 0 24 24" aria-hidden="true">${ic}</svg></div>
+        <div class="ach-body">
+          <span class="ach-tipo t-${it.tipo}">${ACH_TIPO[it.tipo]||it.tipo}</span>
+          <h3>${it.nome}</h3>
+          <p class="ach-nota">“${it.nota}”</p>
+          <p class="ach-meta">${it.loja||""}${it.preco?` · <strong>${it.preco}</strong>`:''}</p>
+          ${href?`<a class="btn block ach-btn" href="${href}" target="_blank" rel="noopener sponsored">${btn}</a>`:`<span class="ach-soon">Em breve</span>`}
+        </div></article>`;}).join("")}</div>
+    <p class="ach-aviso">${A.aviso}</p>`;
+}
+
 /* ================= ESTADO (fica só neste aparelho) ================= */
 const KEY = "eet-app-v1";
 let S = {done:[], quizBest:0};
@@ -610,6 +698,7 @@ function render(){
     }
   }
   if(tab==="quiz") quizRender();
+  if(tab==="achados"){ achRender(); bind(); return; }
   if(tab==="explorar" && lib.open){ libRender(); bind(); return; }
   if(tab==="explorar" && mapv.open){ mapRender(); bind(); return; }
   if(tab==="explorar"){
@@ -750,6 +839,7 @@ function bind(){
   const back=document.getElementById("back"); if(back) back.onclick=()=>{openDay=null;render();};
   const gq=document.getElementById("go-quiz"); if(gq) gq.onclick=()=>{tab="quiz";qi=0;qs=0;render();};
   const $=id=>document.getElementById(id), go=f=>{f();render();window.scrollTo(0,0);};
+  app.querySelectorAll("[data-cat]").forEach(b=>b.onclick=()=>{achCat=b.dataset.cat;render();});
   if($("open-map")) $("open-map").onclick=()=>go(()=>{mapv.open=true;});
   if($("map-close")) $("map-close").onclick=()=>go(()=>{mapv.open=false;});
   app.querySelectorAll("[data-era]").forEach(b=>b.onclick=()=>{mapv.era=b.dataset.era;render();});
@@ -884,6 +974,7 @@ async function share(i){
 }
 
 render();
+loadAchados();
 </script>
 
 </body>

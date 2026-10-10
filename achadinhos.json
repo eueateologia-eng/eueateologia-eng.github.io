@@ -1,0 +1,73 @@
+{
+  "titulo": "Achadinho da Teóloga",
+  "intro": "O que eu uso no meu estudo e no dia a dia, e onde comprei.",
+  "aviso": "Alguns links são de afiliado: a Juliana pode receber uma comissão pela compra, sem custo extra para você.",
+  "itens": [
+    {
+      "nome": "Atlas bíblico ilustrado",
+      "categoria": "Livros",
+      "tipo": "afiliado",
+      "loja": "Amazon",
+      "preco": "",
+      "imagem": "",
+      "nota": "Mapas e reconstruções que uso para mostrar onde cada história aconteceu.",
+      "link": "https://www.amazon.com.br/s?k=atlas+b%C3%ADblico",
+      "exemplo": true
+    },
+    {
+      "nome": "Kit de marca-textos para Bíblia",
+      "categoria": "Estudo",
+      "tipo": "afiliado",
+      "loja": "Shopee",
+      "preco": "",
+      "imagem": "",
+      "nota": "Não atravessam o papel fino da Bíblia. Uso uma cor para cada tema.",
+      "link": "https://shopee.com.br/search?keyword=marca%20texto%20biblia",
+      "exemplo": true
+    },
+    {
+      "nome": "Bíblia de estudo",
+      "categoria": "Bíblias",
+      "tipo": "uso",
+      "loja": "Mercado Livre",
+      "preco": "",
+      "imagem": "",
+      "nota": "A que fica na minha mesa. Notas de contexto histórico em cada livro.",
+      "link": "https://lista.mercadolivre.com.br/biblia-de-estudo",
+      "exemplo": true
+    },
+    {
+      "nome": "Caderno de anotações bíblicas",
+      "categoria": "Organização",
+      "tipo": "loja",
+      "loja": "Loja Eu e a Teologia",
+      "preco": "",
+      "imagem": "",
+      "nota": "Com espaço para texto, contexto e aplicação, o mesmo método da trilha diária.",
+      "link": "",
+      "exemplo": true
+    },
+    {
+      "nome": "Histórias bíblicas para crianças",
+      "categoria": "Infantil",
+      "tipo": "afiliado",
+      "loja": "Amazon",
+      "preco": "",
+      "imagem": "",
+      "nota": "Ilustrações bonitas e texto fiel. Ótimo para ler antes de dormir.",
+      "link": "https://www.amazon.com.br/s?k=hist%C3%B3rias+b%C3%ADblicas+infantil",
+      "exemplo": true
+    },
+    {
+      "nome": "Capa de Bíblia em tecido",
+      "categoria": "Acessórios",
+      "tipo": "loja",
+      "loja": "Loja Eu e a Teologia",
+      "preco": "",
+      "imagem": "",
+      "nota": "Protege a Bíblia na bolsa e guarda canetas e marcadores.",
+      "link": "",
+      "exemplo": true
+    }
+  ]
+}
